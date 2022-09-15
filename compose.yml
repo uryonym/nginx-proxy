@@ -1,0 +1,31 @@
+services:
+
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    hostname: nginx-proxy
+    restart: always
+    environment:
+      TZ: Asia/Tokyo
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/log:/var/log/nginx
+      - ./nginx/html:/usr/share/nginx/html
+      - ./letsencrypt/cert:/etc/letsencrypt
+  
+  certbot:
+    image: certbot/certbot:arm64v8-latest
+    container_name: certbot
+    hostname: certbot
+    restart: always
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html
+      - ./letsencrypt/cert:/etc/letsencrypt
+      - ./letsencrypt/log:/var/log/letsencrypt
+
+networks:
+  default:
+    name: proxy-network
