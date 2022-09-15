@@ -27,6 +27,5 @@ services:
       - ./letsencrypt/log:/var/log/letsencrypt
 
 networks:
-  proxy-network:
-  uryolog-network:
-    external: true
+  default:
+    name: proxy-network
