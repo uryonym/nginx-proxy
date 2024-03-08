@@ -1,7 +1,6 @@
 services:
-
   nginx-proxy:
-    image: nginx:latest
+    image: nginx:1.25.4
     container_name: nginx-proxy
     hostname: nginx-proxy
     restart: always
@@ -15,7 +14,7 @@ services:
       - ./nginx/log:/var/log/nginx
       - ./nginx/html:/usr/share/nginx/html
       - ./letsencrypt/cert:/etc/letsencrypt
-  
+
   certbot:
     image: certbot/certbot:arm64v8-latest
     container_name: certbot
