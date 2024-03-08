@@ -1,7 +1,3 @@
-/nginx/html/blog/*
-!/nginx/html/blog/.keep
-/nginx/html/portal/*
-!/nginx/html/portal/.keep
 /nginx/html/api-portal/*
 !/nginx/html/api-portal/.keep
 /nginx/log/*
