@@ -14,7 +14,6 @@ services:
     volumes:
       - nginx-proxy-volume:/var/lib/https-portal
     networks:
-      - nginx-proxy-network
       - ynym-portal-network
 
 volumes:
