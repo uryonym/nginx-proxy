@@ -24,3 +24,6 @@ volumes:
 networks:
   default:
     name: nginx-proxy-network
+  ynym-portal-network:
+    name: ynym-portal-network
+    external: true
