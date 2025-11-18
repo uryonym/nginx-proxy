@@ -1,8 +1,0 @@
-/nginx/html/api-portal/*
-!/nginx/html/api-portal/.keep
-/nginx/log/*
-!/nginx/log/.keep
-/letsencrypt/cert/*
-!/letsencrypt/cert/.keep
-/letsencrypt/log/*
-!/letsencrypt/log/.keep
