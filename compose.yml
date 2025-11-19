@@ -13,6 +13,8 @@ services:
       - 443:443
     volumes:
       - nginx-proxy-volume:/var/lib/https-portal
+    networks:
+      - nginx-proxy-network
 
 volumes:
   nginx-proxy-volume:
@@ -20,5 +22,6 @@ volumes:
     driver: local
 
 networks:
-  default:
+  nginx-proxy-network:
     name: nginx-proxy-network
+    external: true
