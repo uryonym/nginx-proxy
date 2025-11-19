@@ -13,8 +13,6 @@ services:
       - 443:443
     volumes:
       - nginx-proxy-volume:/var/lib/https-portal
-    networks:
-      - ynym-portal-network
 
 volumes:
   nginx-proxy-volume:
@@ -24,6 +22,3 @@ volumes:
 networks:
   default:
     name: nginx-proxy-network
-  ynym-portal-network:
-    name: ynym-portal-network
-    external: true
