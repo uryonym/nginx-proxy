@@ -1,6 +1,6 @@
 services:
   nginx-proxy:
-    image: steveltn/https-portal:1.25.2
+    image: steveltn/https-portal:1.25.6
     container_name: nginx-proxy
     hostname: nginx-proxy
     restart: always
@@ -8,10 +8,13 @@ services:
       - STAGE=production
       - DOMAINS=portal.uryonym.com -> http://ynym-portal-frontend:3000
       - TZ=Asia/Tokyo
+      - DYNAMIC_UPSTREAM=true
+      - RESOLVER=127.0.0.11 ipv6=off valid=10s
       - |
         CUSTOM_NGINX_PORTAL_URYONYM_COM_CONFIG_BLOCK=
         location /api/ {
-            proxy_pass http://ynym-portal-backend:8000;
+            set $$backend "http://ynym-portal-backend:8000";
+            proxy_pass $$backend;
             proxy_set_header Host $$host;
             proxy_set_header X-Real-IP $$remote_addr;
             proxy_set_header X-Forwarded-For $$proxy_add_x_forwarded_for;
