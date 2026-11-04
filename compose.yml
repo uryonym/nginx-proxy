@@ -6,8 +6,17 @@ services:
     restart: always
     environment:
       - STAGE=production
-      - DOMAINS=portal-api.uryonym.com -> http://ynym-portal-backend:8080, portal.uryonym.com -> http://ynym-portal-frontend:3000, ynym-portal.uryonym.com -> http://ynym-portal:3000
+      - DOMAINS=portal.uryonym.com -> http://ynym-portal-frontend:3000
       - TZ=Asia/Tokyo
+      - |
+        CUSTOM_NGINX_PORTAL_URYONYM_COM_CONFIG_BLOCK=
+        location /api/ {
+            proxy_pass http://ynym-portal-backend:8000;
+            proxy_set_header Host $$host;
+            proxy_set_header X-Real-IP $$remote_addr;
+            proxy_set_header X-Forwarded-For $$proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $$scheme;
+        }
     ports:
       - 80:80
       - 443:443
