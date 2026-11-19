@@ -1,6 +1,6 @@
 services:
   nginx-proxy:
-    image: steveltn/https-portal:1.25.6
+    image: steveltn/https-portal:1.25.7
     container_name: nginx-proxy
     hostname: nginx-proxy
     restart: always
